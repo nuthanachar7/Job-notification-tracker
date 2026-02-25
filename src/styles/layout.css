@@ -9,6 +9,7 @@
 }
 
 .topbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,6 +37,168 @@
 
 .topbar__status .badge {
   margin-left: auto;
+}
+
+/* ─── App nav (Step 2): Dashboard | Saved | Digest | Settings | Proof ─── */
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.topbar__nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition-duration) var(--transition-ease);
+}
+
+.topbar__nav-link:hover {
+  border-bottom-color: var(--color-border);
+}
+
+.topbar__nav-link--active {
+  border-bottom-color: var(--color-accent);
+}
+
+.topbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: border-color var(--transition-duration) var(--transition-ease);
+}
+
+.topbar__hamburger:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.topbar__hamburger-line {
+  display: block;
+  height: 2px;
+  background: var(--color-text);
+  width: 18px;
+  margin: 0 auto;
+}
+
+.topbar__dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.topbar__dropdown-link {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: border-color var(--transition-duration) var(--transition-ease);
+}
+
+.topbar__dropdown-link:hover {
+  border-color: var(--color-border);
+}
+
+.topbar__dropdown-link.topbar__nav-link--active {
+  border-color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Page placeholder and app main */
+.app-main {
+  flex: 1;
+  padding: var(--space-4);
+  min-height: 0;
+}
+
+.page-placeholder {
+  padding: var(--space-4) 0;
+  max-width: var(--text-max-width);
+}
+
+.page-placeholder h1 {
+  margin-bottom: var(--space-1);
+}
+
+.page-placeholder .context-subtext {
+  margin: 0;
+}
+
+/* Landing (/) */
+.landing {
+  padding: var(--space-5) 0;
+  max-width: var(--text-max-width);
+}
+
+.landing__headline {
+  font-family: var(--font-serif);
+  font-size: var(--heading-1-size);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-2);
+}
+
+.landing__subtext {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  opacity: 0.9;
+  margin: 0 0 var(--space-4);
+}
+
+.landing__cta {
+  margin-top: var(--space-3);
+}
+
+/* Settings placeholder fields */
+.settings-page .settings-fields {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--text-max-width);
+}
+
+.settings-field__label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.settings-field .input {
+  max-width: 400px;
+}
+
+select.input {
+  cursor: default;
+  appearance: auto;
 }
 
 .context-header {
@@ -140,5 +303,26 @@
   .workspace,
   .panel {
     flex: 1 1 auto;
+  }
+}
+
+/* Mobile: hamburger nav (Step 2) */
+@media (max-width: 768px) {
+  .topbar__nav {
+    display: none;
+  }
+
+  .topbar__hamburger {
+    display: flex;
+  }
+
+  .topbar__dropdown {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .topbar__dropdown {
+    display: none !important;
   }
 }
