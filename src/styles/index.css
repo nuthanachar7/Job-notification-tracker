@@ -1,0 +1,10 @@
+/**
+ * Job Notification App — Design System
+ * Single entry. No gradients, no glassmorphism, no animation noise.
+ */
+
+@import "design-tokens.css";
+@import "typography.css";
+@import "components.css";
+@import "layout.css";
+@import "errors-and-empty.css";

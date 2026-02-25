@@ -1,0 +1,10 @@
+/**
+ * Job Notification App — Design System
+ * Single entry point. Import this file to apply the full design system.
+ */
+
+@import "design-tokens.css";
+@import "typography.css";
+@import "components.css";
+@import "layout.css";
+@import "errors-and-empty.css";

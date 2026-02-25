@@ -1,0 +1,45 @@
+/**
+ * Job Notification App — Error & Empty States
+ * Clear explanation, next action. Never blame the user.
+ */
+
+.error-state,
+.empty-state {
+  padding: var(--space-4);
+  text-align: left;
+  max-width: var(--text-max-width);
+}
+
+.error-state__title,
+.empty-state__title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+  color: var(--color-text);
+}
+
+.error-state__message,
+.empty-state__message {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0 0 var(--space-2);
+  color: var(--color-text);
+  opacity: 0.9;
+}
+
+.error-state__action,
+.empty-state__action {
+  margin-top: var(--space-2);
+}
+
+.error-state__message a,
+.empty-state__message a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.error-state__message a:hover,
+.empty-state__message a:hover {
+  text-decoration: underline;
+}

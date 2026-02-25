@@ -1,0 +1,80 @@
+/**
+ * Job Notification App — Typography
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0;400;500;600;700&family=Source+Serif+4:ital,wght@0;400;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+}
+
+h1, .heading-1 {
+  font-family: var(--font-serif);
+  font-size: var(--heading-1-size);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-2);
+  max-width: var(--text-max-width);
+}
+
+h2, .heading-2 {
+  font-family: var(--font-serif);
+  font-size: var(--heading-2-size);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--space-2);
+  max-width: var(--text-max-width);
+}
+
+h3, .heading-3 {
+  font-family: var(--font-serif);
+  font-size: var(--heading-3-size);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  margin: 0 0 var(--space-1);
+  max-width: var(--text-max-width);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+  max-width: var(--text-max-width);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.context-subtext {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text);
+  opacity: 0.85;
+  margin: 0;
+  max-width: var(--text-max-width);
+}
+
+.text-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-muted {
+  opacity: 0.75;
+}

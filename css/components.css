@@ -1,0 +1,147 @@
+/**
+ * Job Notification App — Component Styles
+ * Same border radius everywhere. Subtle borders. No heavy shadows.
+ */
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-duration) var(--transition-ease),
+              border-color var(--transition-duration) var(--transition-ease),
+              color var(--transition-duration) var(--transition-ease);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-primary-text);
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background-color: #6E0000;
+  border-color: #6E0000;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text);
+  background-color: rgba(17, 17, 17, 0.04);
+}
+
+/* ─── Inputs ─── */
+.input {
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition-duration) var(--transition-ease);
+}
+
+.input::placeholder {
+  color: var(--color-text);
+  opacity: 0.5;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Textarea */
+.textarea {
+  min-height: 120px;
+  padding: var(--space-2);
+  resize: vertical;
+}
+
+/* ─── Cards ─── */
+.card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  transition: border-color var(--transition-duration) var(--transition-ease);
+}
+
+.card:focus-within {
+  border-color: var(--color-border-focus);
+}
+
+/* ─── Copyable prompt box (secondary panel) ─── */
+.prompt-box {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  padding: var(--space-2);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.prompt-box:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+}
+
+/* ─── Status badge ─── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.badge-success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.badge-warning {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.badge-neutral {
+  opacity: 0.8;
+}

@@ -1,0 +1,47 @@
+/**
+ * Job Notification App — Design Tokens
+ * Maximum 4 colors. No gradients, no neon, no glassmorphism.
+ */
+
+:root {
+  --color-bg: #F7F6F3;
+  --color-text: #111111;
+  --color-accent: #8B0000;
+  --color-success: #4A5D4A;
+  --color-warning: #8B7355;
+
+  --color-border: #E0DDD8;
+  --color-border-focus: #8B0000;
+
+  --color-primary: var(--color-accent);
+  --color-primary-text: #FFFFFF;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-size-body: 17px;
+  --text-size-body-min: 16px;
+  --text-size-body-max: 18px;
+  --line-height-body: 1.65;
+  --line-height-heading: 1.35;
+  --text-max-width: 720px;
+
+  --heading-1-size: 2.25rem;
+  --heading-2-size: 1.75rem;
+  --heading-3-size: 1.25rem;
+
+  --layout-gap: var(--space-3);
+  --topbar-height: 56px;
+  --footer-min-height: 80px;
+
+  --radius: 6px;
+  --input-height: 44px;
+  --transition-duration: 180ms;
+  --transition-ease: ease-in-out;
+}
