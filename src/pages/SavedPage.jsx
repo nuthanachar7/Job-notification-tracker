@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { jobs } from '../data/jobs';
 import { getSavedJobIds } from '../utils/savedJobs';
+import { getPreferences } from '../utils/preferences';
+import { computeMatchScore } from '../utils/matchScore';
 import { JobCard } from '../components/JobCard';
 import { JobViewModal } from '../components/JobViewModal';
 
 export function SavedPage() {
   const [savedIds, setSavedIds] = useState(getSavedJobIds);
   const [modalJob, setModalJob] = useState(null);
+  const preferences = useMemo(() => getPreferences(), []);
 
   useEffect(() => {
     const handler = () => setSavedIds(getSavedJobIds());
@@ -14,7 +17,11 @@ export function SavedPage() {
     return () => window.removeEventListener('storage', handler);
   }, []);
 
-  const savedJobs = jobs.filter((j) => savedIds.includes(j.id));
+  const savedJobs = useMemo(() => {
+    return jobs
+      .filter((j) => savedIds.includes(j.id))
+      .map((job) => ({ ...job, matchScore: computeMatchScore(job, preferences) }));
+  }, [savedIds, preferences.roleKeywords, preferences.preferredLocations, preferences.preferredMode, preferences.experienceLevel, preferences.skills]);
 
   const refreshSaved = () => setSavedIds(getSavedJobIds());
 
@@ -37,7 +44,7 @@ export function SavedPage() {
       <ul className="dashboard-list" aria-label="Saved job listings">
         {savedJobs.map((job) => (
           <li key={job.id}>
-            <JobCard job={job} onView={setModalJob} onSaveChange={refreshSaved} savedIds={savedIds} />
+            <JobCard job={job} matchScore={job.matchScore} onView={setModalJob} onSaveChange={refreshSaved} savedIds={savedIds} />
           </li>
         ))}
       </ul>

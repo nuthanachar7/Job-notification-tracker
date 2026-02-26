@@ -1,4 +1,4 @@
-import { getSavedJobIds, saveJobId, removeSavedJobId, isJobSaved } from '../utils/savedJobs';
+import { saveJobId, removeSavedJobId } from '../utils/savedJobs';
 
 function postedLabel(daysAgo) {
   if (daysAgo === 0) return 'Today';
@@ -6,8 +6,16 @@ function postedLabel(daysAgo) {
   return `${daysAgo} days ago`;
 }
 
-export function JobCard({ job, onView, onSaveChange, savedIds }) {
-  const saved = savedIds.includes(job.id);
+function matchBadgeClass(score) {
+  if (score == null) return 'badge-match-subtle';
+  if (score >= 80) return 'badge-match-high';
+  if (score >= 60) return 'badge-match-medium';
+  if (score >= 40) return 'badge-match-low';
+  return 'badge-match-subtle';
+}
+
+export function JobCard({ job, matchScore, onView, onSaveChange, savedIds }) {
+  const saved = (savedIds || []).includes(job.id);
 
   const handleSave = () => {
     if (saved) {
@@ -24,7 +32,14 @@ export function JobCard({ job, onView, onSaveChange, savedIds }) {
 
   return (
     <article className="job-card card">
-      <h3 className="job-card__title">{job.title}</h3>
+      <div className="job-card__header">
+        <h3 className="job-card__title">{job.title}</h3>
+        {matchScore != null && (
+          <span className={`badge ${matchBadgeClass(matchScore)}`} aria-label={`Match score ${matchScore}`}>
+            {matchScore}% match
+          </span>
+        )}
+      </div>
       <p className="job-card__company">{job.company}</p>
       <p className="job-card__meta text-small text-muted">
         {job.location} · {job.mode} · {job.experience}

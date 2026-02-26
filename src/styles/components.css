@@ -138,3 +138,23 @@
 .badge-neutral {
   opacity: 0.8;
 }
+
+/* Match score badges: 80–100 green, 60–79 amber, 40–59 neutral, <40 subtle grey */
+.badge-match-high {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.badge-match-medium {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.badge-match-low {
+  opacity: 0.85;
+}
+
+.badge-match-subtle {
+  opacity: 0.6;
+  border-color: var(--color-border);
+}

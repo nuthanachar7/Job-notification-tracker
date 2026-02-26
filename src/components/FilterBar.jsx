@@ -10,6 +10,8 @@ const SORT_OPTIONS = [
   { value: 'latest', label: 'Latest' },
   { value: 'oldest', label: 'Oldest' },
   { value: 'company', label: 'Company A–Z' },
+  { value: 'matchScore', label: 'Match Score' },
+  { value: 'salary', label: 'Salary' },
 ];
 
 export function FilterBar({
