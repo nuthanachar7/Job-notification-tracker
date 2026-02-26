@@ -210,6 +210,33 @@ select.input {
   margin-bottom: var(--space-4);
 }
 
+/* Filter bar (Step 4) */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  max-width: var(--text-max-width);
+}
+
+.filter-bar__keyword {
+  flex: 1;
+  min-width: 180px;
+}
+
+.filter-bar__select {
+  min-width: 120px;
+}
+
+.dashboard-page__no-results {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text);
+  opacity: 0.85;
+  margin: 0;
+  max-width: var(--text-max-width);
+}
+
 .dashboard-list {
   list-style: none;
   margin: 0;
@@ -237,13 +264,27 @@ select.input {
   margin: 0 0 var(--space-1);
 }
 
-.job-card__snippet {
-  margin: 0 0 var(--space-1);
-  line-height: 1.5;
+.job-card__salary {
+  margin: 0 0 var(--space-2);
+}
+
+.job-card__badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
 }
 
 .job-card__posted {
   margin: 0;
+}
+
+.job-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
 }
 
 .context-header {
@@ -349,6 +390,99 @@ select.input {
   .panel {
     flex: 1 1 auto;
   }
+}
+
+/* Modal (Step 4) — design system, no heavy shadow */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  z-index: 1000;
+  transition: opacity var(--transition-duration) var(--transition-ease);
+}
+
+.modal {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modal__header {
+  position: relative;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal__title {
+  font-family: var(--font-serif);
+  font-size: var(--heading-3-size);
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.modal__company {
+  font-size: 0.9375rem;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: border-color var(--transition-duration) var(--transition-ease);
+}
+
+.modal__close:hover {
+  border-color: var(--color-text);
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.modal__body {
+  padding: var(--space-3);
+}
+
+.modal__description {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0 0 var(--space-3);
+  white-space: pre-line;
+}
+
+.modal__skills {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.modal__skills-label {
+  font-weight: 600;
+  margin-right: var(--space-1);
+}
+
+.modal__skills-list {
+  opacity: 0.9;
 }
 
 /* Mobile: hamburger nav (Step 2) */
