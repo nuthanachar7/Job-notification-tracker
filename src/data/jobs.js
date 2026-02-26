@@ -1,0 +1,55 @@
+/**
+ * Realistic job dataset for Step 3. Client-side only, no API.
+ */
+export const jobs = [
+  {
+    id: '1',
+    title: 'Senior Frontend Engineer',
+    company: 'TechFlow Solutions',
+    location: 'Bangalore',
+    mode: 'Hybrid',
+    experience: 'Senior',
+    posted: '2025-02-24',
+    snippet: 'Build scalable React applications and design systems for enterprise clients.',
+  },
+  {
+    id: '2',
+    title: 'Full Stack Developer',
+    company: 'Nexus Labs',
+    location: 'Remote',
+    mode: 'Remote',
+    experience: 'Mid',
+    posted: '2025-02-23',
+    snippet: 'Node.js and React. Work with a small product team on greenfield projects.',
+  },
+  {
+    id: '3',
+    title: 'Software Engineer – Backend',
+    company: 'DataFirst Inc',
+    location: 'Mumbai',
+    mode: 'Onsite',
+    experience: 'Mid',
+    posted: '2025-02-22',
+    snippet: 'Design and maintain APIs and data pipelines. Python or Go experience preferred.',
+  },
+  {
+    id: '4',
+    title: 'UI/UX Developer',
+    company: 'Creative Studio',
+    location: 'Chennai',
+    mode: 'Hybrid',
+    experience: 'Entry',
+    posted: '2025-02-21',
+    snippet: 'Turn designs into accessible, responsive interfaces. HTML, CSS, JavaScript.',
+  },
+  {
+    id: '5',
+    title: 'DevOps Engineer',
+    company: 'CloudScale',
+    location: 'Remote',
+    mode: 'Remote',
+    experience: 'Senior',
+    posted: '2025-02-20',
+    snippet: 'Own CI/CD and infrastructure. Kubernetes, Terraform, AWS or GCP.',
+  },
+];

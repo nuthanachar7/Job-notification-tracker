@@ -201,6 +201,51 @@ select.input {
   appearance: auto;
 }
 
+/* Dashboard job list (Step 3) */
+.dashboard-page h1 {
+  margin-bottom: var(--space-1);
+}
+
+.dashboard-page .context-subtext {
+  margin-bottom: var(--space-4);
+}
+
+.dashboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--text-max-width);
+}
+
+.job-card__title {
+  font-family: var(--font-serif);
+  font-size: var(--heading-3-size);
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.job-card__company {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin: 0 0 var(--space-1);
+}
+
+.job-card__meta {
+  margin: 0 0 var(--space-1);
+}
+
+.job-card__snippet {
+  margin: 0 0 var(--space-1);
+  line-height: 1.5;
+}
+
+.job-card__posted {
+  margin: 0;
+}
+
 .context-header {
   padding: var(--space-4) var(--space-4) var(--space-3);
   border-bottom: 1px solid var(--color-border);
