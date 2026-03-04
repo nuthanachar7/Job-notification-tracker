@@ -8,11 +8,13 @@ import {
   DigestPage,
   ProofPage,
   NotFoundPage,
+  TestChecklistPage,
+  ShipPage,
 } from './pages';
 
 /**
  * Job Notification Tracker — Premium SaaS app skeleton.
- * Routes: / (landing), /dashboard, /saved, /digest, /settings, /proof, 404.
+ * Routes: /, /dashboard, /saved, /digest, /settings, /proof, /jt/07-test, /jt/08-ship, 404.
  */
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/digest" element={<DigestPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/proof" element={<ProofPage />} />
+        <Route path="/jt/07-test" element={<TestChecklistPage />} />
+        <Route path="/jt/08-ship" element={<ShipPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

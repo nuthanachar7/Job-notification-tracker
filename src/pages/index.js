@@ -6,3 +6,5 @@ export { DashboardPage } from './DashboardPage';
 export { SavedPage } from './SavedPage';
 export { DigestPage } from './DigestPage';
 export { ProofPage } from './ProofPage';
+export { TestChecklistPage } from './TestChecklistPage';
+export { ShipPage } from './ShipPage';
