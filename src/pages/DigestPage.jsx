@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { jobs } from '../data/jobs';
 import { getPreferences, hasPreferencesSet } from '../utils/preferences';
+import { getStatusHistory } from '../utils/jobStatus';
 import {
   getDigestForDate,
   saveDigest,
@@ -19,12 +20,24 @@ function formatDigestDate(date) {
   });
 }
 
+function formatStatusDate(iso) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-IN', { dateStyle: 'medium' });
+  } catch {
+    return '';
+  }
+}
+
+const jobMap = Object.fromEntries(jobs.map((j) => [j.id, j]));
+
 export function DigestPage() {
   const preferences = useMemo(() => getPreferences(), []);
   const prefsSet = hasPreferencesSet(preferences);
 
   const [digest, setDigest] = useState(() => getDigestForDate(TODAY));
   const [noMatches, setNoMatches] = useState(false);
+  const statusHistory = useMemo(() => getStatusHistory().slice(0, 20), []);
 
   const handleGenerate = () => {
     const existing = getDigestForDate(TODAY);
@@ -79,6 +92,30 @@ export function DigestPage() {
       <button type="button" className="btn btn-primary digest-generate" onClick={handleGenerate}>
         Generate Today&apos;s 9AM Digest (Simulated)
       </button>
+
+      {statusHistory.length > 0 && (
+        <div className="digest-card digest-status-updates">
+          <h2 className="digest-card__title">Recent Status Updates</h2>
+          <ul className="digest-card__list">
+            {statusHistory.map((entry, i) => {
+              const job = jobMap[entry.jobId];
+              return (
+                <li key={`${entry.jobId}-${entry.changedAt}-${i}`} className="digest-card__item digest-card__item--status">
+                  <div className="digest-card__item-main">
+                    <p className="digest-card__item-title digest-card__item-title--small">{job ? job.title : 'Unknown job'}</p>
+                    <p className="digest-card__item-company">{job ? job.company : ''}</p>
+                    <p className="digest-card__item-meta text-small text-muted">
+                      <span className={`badge-status badge-status--${entry.status === 'Not Applied' ? 'neutral' : entry.status.toLowerCase()}`}>{entry.status}</span>
+                      {' · '}
+                      {formatStatusDate(entry.changedAt)}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
 
       {noMatches && (
         <div className="digest-block digest-block--message">

@@ -9,6 +9,7 @@ import { JobViewModal } from '../components/JobViewModal';
 export function SavedPage() {
   const [savedIds, setSavedIds] = useState(getSavedJobIds);
   const [modalJob, setModalJob] = useState(null);
+  const [statusVersion, setStatusVersion] = useState(0);
   const preferences = useMemo(() => getPreferences(), []);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export function SavedPage() {
       <ul className="dashboard-list" aria-label="Saved job listings">
         {savedJobs.map((job) => (
           <li key={job.id}>
-            <JobCard job={job} matchScore={job.matchScore} onView={setModalJob} onSaveChange={refreshSaved} savedIds={savedIds} />
+            <JobCard job={job} matchScore={job.matchScore} onView={setModalJob} onSaveChange={refreshSaved} onStatusChange={() => setStatusVersion((v) => v + 1)} savedIds={savedIds} />
           </li>
         ))}
       </ul>

@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { jobs } from '../data/jobs';
 import { getSavedJobIds } from '../utils/savedJobs';
+import { getJobStatus } from '../utils/jobStatus';
 import { getPreferences, hasPreferencesSet } from '../utils/preferences';
 import { computeMatchScore } from '../utils/matchScore';
 import { getSalarySortValue } from '../utils/salarySort';
@@ -9,7 +10,7 @@ import { FilterBar } from '../components/FilterBar';
 import { JobCard } from '../components/JobCard';
 import { JobViewModal } from '../components/JobViewModal';
 
-function filterAndSortJobs(jobsList, { keyword, location, mode, experience, source, sort }) {
+function filterAndSortJobs(jobsList, { keyword, location, mode, experience, source, status, sort }) {
   let result = jobsList.slice();
 
   const kw = keyword.trim().toLowerCase();
@@ -30,6 +31,9 @@ function filterAndSortJobs(jobsList, { keyword, location, mode, experience, sour
   }
   if (source && source !== 'All') {
     result = result.filter((j) => j.source === source);
+  }
+  if (status && status !== 'All') {
+    result = result.filter((j) => getJobStatus(j.id) === status);
   }
 
   if (sort === 'latest') {
@@ -54,10 +58,12 @@ export function DashboardPage() {
   const [mode, setMode] = useState('All');
   const [experience, setExperience] = useState('All');
   const [source, setSource] = useState('All');
+  const [status, setStatus] = useState('All');
   const [sort, setSort] = useState('latest');
   const [onlyAboveThreshold, setOnlyAboveThreshold] = useState(false);
   const [modalJob, setModalJob] = useState(null);
   const [savedIds, setSavedIds] = useState(getSavedJobIds);
+  const [statusVersion, setStatusVersion] = useState(0);
 
   const jobsWithScore = useMemo(() => {
     return jobs.map((job) => ({
@@ -72,10 +78,10 @@ export function DashboardPage() {
     return jobsWithScore.filter((j) => (j.matchScore ?? 0) >= min);
   }, [jobsWithScore, onlyAboveThreshold, preferences.minMatchScore]);
 
-  const filters = { keyword, location, mode, experience, source, sort };
+  const filters = { keyword, location, mode, experience, source, status, sort };
   const filteredJobs = useMemo(
     () => filterAndSortJobs(afterThreshold, filters),
-    [afterThreshold, filters.keyword, filters.location, filters.mode, filters.experience, filters.source, filters.sort]
+    [afterThreshold, filters.keyword, filters.location, filters.mode, filters.experience, filters.source, filters.status, filters.sort, statusVersion]
   );
 
   const refreshSaved = () => setSavedIds(getSavedJobIds());
@@ -115,6 +121,8 @@ export function DashboardPage() {
         onExperienceChange={setExperience}
         source={source}
         onSourceChange={setSource}
+        status={status}
+        onStatusChange={setStatus}
         sort={sort}
         onSortChange={setSort}
       />
@@ -132,6 +140,7 @@ export function DashboardPage() {
                 matchScore={job.matchScore}
                 onView={setModalJob}
                 onSaveChange={refreshSaved}
+                onStatusChange={() => setStatusVersion((v) => v + 1)}
                 savedIds={savedIds}
               />
             </li>

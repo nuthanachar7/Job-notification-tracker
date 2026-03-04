@@ -6,6 +6,7 @@ const LOCATIONS = ['All', 'Bangalore', 'Chennai', 'Gurgaon', 'Hyderabad', 'Mumba
 const MODES = ['All', 'Remote', 'Hybrid', 'Onsite'];
 const EXPERIENCES = ['All', 'Fresher', '0-1', '1-3', '3-5'];
 const SOURCES = ['All', 'LinkedIn', 'Naukri', 'Indeed'];
+const STATUS_OPTIONS = ['All', 'Not Applied', 'Applied', 'Rejected', 'Selected'];
 const SORT_OPTIONS = [
   { value: 'latest', label: 'Latest' },
   { value: 'oldest', label: 'Oldest' },
@@ -25,6 +26,8 @@ export function FilterBar({
   onExperienceChange,
   source,
   onSourceChange,
+  status,
+  onStatusChange,
   sort,
   onSortChange,
 }) {
@@ -56,6 +59,11 @@ export function FilterBar({
       <select className="input filter-bar__select" value={source} onChange={(e) => onSourceChange(e.target.value)} aria-label="Source">
         {SOURCES.map((src) => (
           <option key={src} value={src}>{src}</option>
+        ))}
+      </select>
+      <select className="input filter-bar__select" value={status} onChange={(e) => onStatusChange(e.target.value)} aria-label="Status">
+        {STATUS_OPTIONS.map((s) => (
+          <option key={s} value={s}>{s}</option>
         ))}
       </select>
       <select className="input filter-bar__select" value={sort} onChange={(e) => onSortChange(e.target.value)} aria-label="Sort">

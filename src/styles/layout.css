@@ -303,6 +303,37 @@
   gap: var(--space-2);
 }
 
+.digest-status-updates {
+  margin-bottom: var(--space-3);
+}
+
+.digest-card__item--status .digest-card__item-main {
+  flex: 1;
+}
+
+.digest-card__item-title--small {
+  font-size: 1rem !important;
+}
+
+/* Toast — non-blocking, premium, auto-dismiss */
+.toast {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 1100;
+  transition: opacity var(--transition-duration) var(--transition-ease);
+}
+
 /* Settings placeholder fields */
 .settings-page .settings-fields {
   margin-top: var(--space-4);
@@ -496,6 +527,45 @@ select.input {
 
 .job-card__posted {
   margin: 0;
+}
+
+.job-card__status {
+  margin-top: var(--space-2);
+}
+
+.job-card__status-label {
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.job-card__status-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.job-card__status-btn {
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-duration) var(--transition-ease), color var(--transition-duration) var(--transition-ease);
+}
+
+.job-card__status-btn:hover {
+  border-color: var(--color-text);
+}
+
+.job-card__status-btn.badge-status--neutral,
+.job-card__status-btn.badge-status--applied,
+.job-card__status-btn.badge-status--rejected,
+.job-card__status-btn.badge-status--selected {
+  border-width: 2px;
 }
 
 .job-card__actions {

@@ -1,4 +1,6 @@
 import { saveJobId, removeSavedJobId } from '../utils/savedJobs';
+import { getJobStatus, setJobStatus } from '../utils/jobStatus';
+import { useToast } from '../context/ToastContext';
 
 function postedLabel(daysAgo) {
   if (daysAgo === 0) return 'Today';
@@ -14,8 +16,21 @@ function matchBadgeClass(score) {
   return 'badge-match-subtle';
 }
 
-export function JobCard({ job, matchScore, onView, onSaveChange, savedIds }) {
+const STATUS_OPTIONS = ['Not Applied', 'Applied', 'Rejected', 'Selected'];
+
+function statusBadgeClass(status) {
+  switch (status) {
+    case 'Applied': return 'badge-status badge-status--applied';
+    case 'Rejected': return 'badge-status badge-status--rejected';
+    case 'Selected': return 'badge-status badge-status--selected';
+    default: return 'badge-status badge-status--neutral';
+  }
+}
+
+export function JobCard({ job, matchScore, onView, onSaveChange, onStatusChange, savedIds }) {
+  const { showToast } = useToast();
   const saved = (savedIds || []).includes(job.id);
+  const currentStatus = getJobStatus(job.id);
 
   const handleSave = () => {
     if (saved) {
@@ -28,6 +43,14 @@ export function JobCard({ job, matchScore, onView, onSaveChange, savedIds }) {
 
   const handleApply = () => {
     if (job.applyUrl) window.open(job.applyUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleStatusChange = (status) => {
+    setJobStatus(job.id, status);
+    if (status !== 'Not Applied') {
+      showToast(`Status updated: ${status}`);
+    }
+    onStatusChange?.();
   };
 
   return (
@@ -49,6 +72,24 @@ export function JobCard({ job, matchScore, onView, onSaveChange, savedIds }) {
         <span className="badge badge-neutral">{job.source}</span>
         <span className="job-card__posted text-small text-muted">{postedLabel(job.postedDaysAgo)}</span>
       </div>
+
+      <div className="job-card__status">
+        <span className="job-card__status-label text-small">Status:</span>
+        <div className="job-card__status-btns" role="group" aria-label="Job application status">
+          {STATUS_OPTIONS.map((status) => (
+            <button
+              key={status}
+              type="button"
+              className={`job-card__status-btn ${currentStatus === status ? statusBadgeClass(status) : ''}`}
+              onClick={() => handleStatusChange(status)}
+              aria-pressed={currentStatus === status}
+            >
+              {status}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="job-card__actions">
         <button type="button" className="btn btn-secondary" onClick={() => onView(job)}>
           View
